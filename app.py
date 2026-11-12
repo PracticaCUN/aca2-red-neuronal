@@ -1,5 +1,7 @@
 
 import streamlit as st
+import os
+st.write(os.listdir("."))
 import numpy as np
 import pandas as pd
 import joblib
