@@ -9,10 +9,10 @@ import tensorflow as tf
 @st.cache_resource
 def cargar():
     return (
-        tf.keras.models.load_model("modelo_estudiante.h5"),
-        joblib.load("escalador.pkl"),
-        joblib.load("codificador_de_etiquetas.pkl"),
-        joblib.load("columna_modelo.pkl")
+        tf.keras.models.load_model("student_model.h5"),
+        joblib.load("scaler.pkl"),
+        joblib.load("label_encoder.pkl"),
+        joblib.load("model_columns.pkl")
     )
 
 model, scaler, label_encoder, model_columns = cargar()
