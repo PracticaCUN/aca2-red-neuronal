@@ -8,13 +8,15 @@ import tensorflow as tf
 st.set_page_config(page_title="Deserción y Éxito Académico", page_icon="🎓", layout="wide")
 
 @st.cache_resource
-def cargar():
-    return (tf.keras.models.load_model("student_model.keras"),
-            joblib.load("scaler.pkl"),
-            joblib.load("label_encoder.pkl"),
-            joblib.load("model_columns.pkl"))
+def cargar_artefactos():
+    model = tf.keras.models.load_model("student_model.keras")
+    scaler = joblib.load("scaler.pkl")
+    label_encoder = joblib.load("label_encoder.pkl")
+    model_columns = joblib.load("model_columns.pkl")
+    stats = pd.read_json("feature_stats.json")
+    return model, scaler, label_encoder, model_columns, stats
 
-model, scaler, label_encoder, model_columns = cargar()
+model, scaler, label_encoder, model_columns, stats = cargar_artefactos()
 stats = pd.read_json("feature_stats.json")
 stats.index = stats.index.str.strip()
 
