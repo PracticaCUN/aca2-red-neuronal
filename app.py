@@ -26,10 +26,14 @@ st.sidebar.header("Parámetros del Estudiante")
 input_data = {}
 
 for col in model_columns:
-
-    mn = float(stats.loc[col, 'min'])
-    mx = float(stats.loc[col, 'max'])
-    med = float(stats.loc[col, '50%'])
+    # Verificamos si la columna existe en las estadísticas para evitar el KeyError
+    if col in stats.index:
+        mn = float(stats.loc[col, 'min'])
+        mx = float(stats.loc[col, 'max'])
+        med = float(stats.loc[col, '50%'])
+    else:
+        # Valores por defecto si la columna no se encuentra
+        mn, mx, med = 0.0, 100.0, 0.0
 
     input_data[col] = st.sidebar.number_input(
         col,
