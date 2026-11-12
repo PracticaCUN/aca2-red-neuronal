@@ -32,8 +32,9 @@ st.sidebar.write("Ingresa los datos requeridos para realizar la predicción:")
 # o basada en los valores por defecto de las columnas que el modelo espera.
 input_data = {}
 for col in model_columns:
-    # Usamos un campo numérico básico para cada característica que el modelo aprendió
-    input_data[col] = st.sidebar.number_input(f"{col}", value=0.0)
+    # Puedes asignar un valor inicial diferente según la columna si lo deseas
+    default_val = 1.0 if "age" in col.lower() else 0.0
+    input_data[col] = st.sidebar.number_input(f"{col}", value=default_val)
 
 # Botón de predicción
 if st.button("Predecir Estado Académico", type="primary"):
